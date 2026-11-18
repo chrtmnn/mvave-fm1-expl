@@ -17,7 +17,7 @@ Stand: 2026-11-18. Startpunkt aus einer Websuche, noch nicht am eigenen Gerät g
 
 ## Backup
 
-- **Ein Dump der Original-Firmware ist nicht vorgesehen.** Inzwischen kann M-Flasher den ganzen Flash-Speicher über den Download-Modus sichern, siehe [Rückweg zu V15](#rückweg-zu-v15-mit-m-flasher). Die Original-Firmware wird deshalb nicht gesichert, sondern bei Bedarf neu aufgespielt (siehe [Wiederherstellung](#wiederherstellung)).
+- **Ganzer Flash-Speicher:** [M-Flasher](https://github.com/jvitkauskas/m-flasher) liest und sichert vor jedem Schreiben den kompletten 1-MiB-Flash über den Download-Modus und kann ihn später zurückspielen. Das ist der einzige bekannte Weg, die installierte Firmware samt Daten zu sichern.
 - **Sounds und Einstellungen** sichert der Installer der Community-Firmware [Melodee](https://github.com/keremimo/melodee/wiki) vor dem Flashen. Diese Sicherung vor jedem Wechsel aufbewahren.
 - Eigene Patches und Sicherungen gehören **nicht** in dieses Repo, falls sie fremde Firmware-Binärdateien enthalten; Ablageort hier eintragen: _offen_.
 
