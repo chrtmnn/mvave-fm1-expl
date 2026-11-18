@@ -12,7 +12,7 @@ Stand: 2026-11-18. Startpunkt aus einer Websuche, noch nicht am eigenen Gerät g
 | Modell | FM-1 |
 | Chip | JieLi AC791N / WL82 (laut Reverse-Engineering-Projekt, siehe [Risiken](#risiken)) |
 | Original-Firmware | V15 (aktuellster offizieller Stand, auf den der Melodee-Installer zurückführt) |
-| Installierte Version | _noch eintragen_ |
+| Installierte Firmware | Blop (Stand 2026-11-18), Version noch eintragen |
 
 ## Backup
 
@@ -31,14 +31,20 @@ Danach die gesicherten Sounds und Einstellungen wieder einspielen.
 
 ### Installer meldet „takes no updates“
 
-Meldung des Melodee-Installers: *„The firmware on your FM-1 takes no updates. Hold OCT− while switching it on, press Back to official V15, then install again.“* Dabei bricht er ab, bevor er etwas schreibt (*„stopped after 0 requests: nothing was written“*). Das Gerät ist in diesem Fall unverändert.
+Meldung beim Versuch, [Blop](https://thefirmwarehub.com/firmware/blop/) zu installieren: *„The firmware on your FM-1 takes no updates. Hold OCT− while switching it on, press Back to official V15, then install again.“* Der Vorgang brach ab, ohne etwas zu schreiben (*„stopped after 0 requests: nothing was written“*).
 
-Ablauf laut Installer:
+Am 2026-11-18 war Blop zu dem Zeitpunkt bereits installiert: Das Gerät startet in Blop, und auch mit gehaltenem OCT− kam kein Update-Modus.
 
-1. FM-1 ausschalten.
-2. **OCT−** gedrückt halten und das Gerät einschalten.
-3. Im Installer **„Back to official V15“** wählen. Das ist selbst ein Flashvorgang, es gelten die [Risiken](#risiken).
-4. Danach die Installation von Melodee erneut starten.
+### Offizieller Updater erkennt Community-Firmware nicht
+
+M-UPGRADE (offizieller Updater, v3.11.0614) meldet bei laufendem Blop *„A USB MIDI device is present but did not answer“*. Laut Diagnose-Log (`M-UPGRADE/LOG/*.jsonl`) antwortet das Gerät sehr wohl, aber mit einer Kennung, die M-UPGRADE nicht kennt:
+
+| Merkmal | Wert unter Blop |
+|---|---|
+| USB VID:PID | `1209:0001` (pid.codes, Community-Kennung) |
+| MIDI-Identity | `FM-1_94010100` |
+
+M-UPGRADE kann also nicht direkt von Blop zurück auf die Original-Firmware. Der Rückweg muss über den „Back to official V15“-Weg der Community-Firmware laufen. Wie genau das bei Blop geht, ist noch offen.
 
 ## Firmware-Quellen
 
@@ -46,7 +52,7 @@ Ablauf laut Installer:
 |---|---|---|
 | M-Vave, offizieller Updater | Original | Weg zurück zum Werkszustand |
 | [Melodee](https://github.com/keremimo/melodee/wiki) | Community-Firmware | Installer mit Backup und Rückweg zu V15 |
-| The Firmware Hub | Sammlung alternativer Firmware | Herkunft je Datei prüfen |
+| The Firmware Hub | Sammlung alternativer Firmware | Herkunft je Datei prüfen; installiert: [Blop](https://thefirmwarehub.com/firmware/blop/) |
 | [M-Vave Workbench und SDK](https://synthtopia.com/content/2026/10/20/m-vave-officially-opens-fm-1-firmware-to-developers-with-new-workbench-sdk) | Offizielle Entwicklerwerkzeuge (seit Oktober 2026) | Grundlage für eigene Firmware |
 
 ## Risiken
@@ -59,7 +65,8 @@ Ablauf laut Installer:
 
 | Datum | Von | Nach | Werkzeug | Ergebnis |
 |---|---|---|---|---|
-| 2026-11-18 | Original (Version unbekannt) | Melodee | Melodee-Installer | Abbruch ohne Schreibvorgang: „takes no updates“, Weg über V15 nötig |
+| 2026-11-18 | Blop (bereits installiert) | Blop | Blop-Installer | Abbruch ohne Schreibvorgang: „takes no updates“ |
+| 2026-11-18 | Blop | – | M-UPGRADE v3.11.0614 | Gerät nicht erkannt (Kennung `1209:0001`, `FM-1_94010100`) |
 
 ## Offene Punkte
 
