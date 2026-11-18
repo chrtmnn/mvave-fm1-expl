@@ -11,12 +11,13 @@ Stand: 2026-11-18. Startpunkt aus einer Websuche, noch nicht am eigenen Gerät g
 | Hersteller | M-Vave (Cuvave) |
 | Modell | FM-1 |
 | Chip | JieLi AC791N / WL82 (laut Reverse-Engineering-Projekt, siehe [Risiken](#risiken)) |
+| Flash-Chip | vermutlich neu (UC25HQ80, `0xB36014`), siehe [Ursache](#ursache-neuer-flash-chip); in M-Flasher unter Device info prüfen |
 | Original-Firmware | V15 (aktuellster offizieller Stand, auf den der Melodee-Installer zurückführt) |
 | Installierte Firmware | Blop (Stand 2026-11-18), Version noch eintragen |
 
 ## Backup
 
-- **Ein Dump der Original-Firmware ist nicht vorgesehen.** Es gibt kein dokumentiertes Werkzeug, das die Firmware vom Gerät ausliest. Die Original-Firmware wird deshalb nicht gesichert, sondern bei Bedarf neu aufgespielt (siehe [Wiederherstellung](#wiederherstellung)).
+- **Ein Dump der Original-Firmware ist nicht vorgesehen.** Inzwischen kann M-Flasher den ganzen Flash-Speicher über den Download-Modus sichern, siehe [Rückweg zu V15](#rückweg-zu-v15-mit-m-flasher). Die Original-Firmware wird deshalb nicht gesichert, sondern bei Bedarf neu aufgespielt (siehe [Wiederherstellung](#wiederherstellung)).
 - **Sounds und Einstellungen** sichert der Installer der Community-Firmware [Melodee](https://github.com/keremimo/melodee/wiki) vor dem Flashen. Diese Sicherung vor jedem Wechsel aufbewahren.
 - Eigene Patches und Sicherungen gehören **nicht** in dieses Repo, falls sie fremde Firmware-Binärdateien enthalten; Ablageort hier eintragen: _offen_.
 
@@ -44,7 +45,26 @@ M-UPGRADE (offizieller Updater, v3.11.0614) meldet bei laufendem Blop *„A USB 
 | USB VID:PID | `1209:0001` (pid.codes, Community-Kennung) |
 | MIDI-Identity | `FM-1_94010100` |
 
-M-UPGRADE kann also nicht direkt von Blop zurück auf die Original-Firmware. Der Rückweg muss über den „Back to official V15“-Weg der Community-Firmware laufen. Wie genau das bei Blop geht, ist noch offen.
+M-UPGRADE kann also nicht direkt von Blop zurück auf die Original-Firmware.
+
+### Ursache: neuer Flash-Chip
+
+Laut [FM-1-Rettungsseite des Firmware Hub](https://thefirmwarehub.com/tools/rescue/#chip) haben FM-1, die seit Herbst 2026 verkauft werden, einen anderen Flash-Chip (UC25HQ80, ID `0xB36014`, frühere Geräte: Puya, `0x856014`). Viele Community-Firmwares, darunter Blop 1.1.0, schreiben den Flash nur bei der alten ID. Auf einem neuen Gerät landen Saves dann nur im RAM („SAVED (RAM)“), Updates scheitern, M-UPGRADE lehnt ab und OCT− beim Einschalten hilft nicht. Kaputt ist nichts. Neu installieren hilft nicht.
+
+Vor jeder Community-Firmware auf diesem Gerät prüfen, ob sie den neuen Chip unterstützt (Liste auf der Rettungsseite).
+
+### Rückweg zu V15 mit M-Flasher
+
+[M-Flasher](https://github.com/jvitkauskas/m-flasher) ([Anleitung](https://github.com/jvitkauskas/m-flasher/blob/main/docs/usage.md)) nutzt den Download-Modus im ROM des Chips („WL82 UBOOT1.00“), den keine Firmware überschreiben kann, und kann mit dem neuen Chip umgehen.
+
+1. FM-1 voll laden. Offizielle V15-`.fwsc` von der M-Vave-Seite und M-Flasher (Windows-Zip, nicht signiert) herunterladen. M-UPGRADE, DAW und Browser-Tabs mit MIDI schließen. FM-1 direkt per USB-Datenkabel anschließen, kein Hub.
+2. In M-Flasher **DOWNLOAD MODE**: Das Display friert ein, es wird noch nichts geschrieben. Aus- und Einschalten bringt den alten Zustand zurück. Nicht jede Firmware reagiert darauf.
+3. M-Flasher liest und sichert den ganzen Flash-Speicher (`Dokumente\M-Flasher\backups`).
+4. Angebot „m-bootloader installieren“ ablehnen, damit der Werks-Bootloader bleibt.
+5. **Install firmware** mit der V15-`.fwsc`, ungefähr 10 Sekunden. Nicht abziehen.
+6. Abstecken, aus- und wieder einschalten.
+
+Reagiert die Firmware nicht auf DOWNLOAD MODE, nennt die Rettungsseite als letzten Ausweg den FM-1 Transporter (Hardware). Vorher dort nachfragen, statt ein Werkzeug nach dem anderen zu probieren.
 
 ## Firmware-Quellen
 
