@@ -90,6 +90,30 @@ Reagiert die Firmware nicht auf DOWNLOAD MODE, nennt die Rettungsseite als letzt
 | 2026-11-18 | Blop | – | M-UPGRADE v3.11.0614 | Gerät nicht erkannt (Kennung `1209:0001`, `FM-1_94010100`) |
 | 2026-11-18 | Blop | V15 (`FM-1_015.fwsc`) | M-Flasher | Erfolgreich, Flash-Backup in `Dokumente\M-Flasher\backups` |
 
+## Firmware-Empfehlungen
+
+Alle hier genannten speichern laut [Firmware Hub](https://thefirmwarehub.com/tools/rescue/#chip) auf dem neuen Flash-Chip (Stand 2026-11-18). Blop 1.1.0 tut das nicht.
+
+| Firmware | Wofür | Hinweis |
+|---|---|---|
+| [SLOOP](https://github.com/isod89/sloop-fm1) 2.8.5 | Einstieg für ganze Songs: 4 Spuren (3 Synths, 1 Drums), Song aus Teilen A–D | [Guide](https://github.com/isod89/sloop-fm1/blob/main/GUIDE.md), [Handbuch](https://github.com/isod89/sloop-fm1/blob/main/SLOOP.md), [Installer](https://isod89.github.io/sloop-fm1/) |
+| [FM-FAM](https://github.com/davidamomusic/fm-fam) 0.3.1 | DFAM-artig: Kick plus eine Synth-Stimme, Snare/Hats selbst bauen | Beta; [Spickzettel](https://davidamomusic.github.io/fm-fam/fam/docs/FM-FAM-cheatsheet.pdf) |
+| [X0X](https://github.com/charlesvestal/fm1-x0x) 1.2.2 | 909/808-Drums, zwei 303 | |
+| [Hortator](https://github.com/deadactive/hortator) 1.0.1 | Drumcomputer, 8 Spuren, Grids | |
+| [MONO2K](https://github.com/InigoHernandez/mono2k) 1.12 | Monomachine-artig, 4 Drum-Synths | |
+| [Ravel](https://github.com/De-Pattern/Ravel_FM1) 1.42.0 | 33 Drum-Maschinen nach Machinedrum | |
+
+### SLOOP: erster Song
+
+1. Spur 4 (Drums) per ALGORITHM, Kit mit PRESETS (z. B. 808, BOOMBAP).
+2. REC, frei spielen, REC auf der „1“ nach dem letzten Takt schließt die Schleife und setzt das Tempo. REC während des Abspielens nimmt obendrauf auf.
+3. Spur 1: Bassline aufnehmen. SEL halten + Grundton setzt die Tonart.
+4. Spur 2: SEL halten, Knopf 1 auf 7TH: jede weiße Taste spielt einen Akkord.
+5. EDIT + OCT− macht rückgängig.
+6. SAVE + Taste 5–8 speichert die Schleife als Teil A–D, SAVE + 1–4 spielt Teile ab dem nächsten Takt, SAVE + 14 nimmt den Song auf.
+
+Zurück zur Original-Firmware laut SLOOP: Backup, dann M-UPGRADE mit V16. Findet M-UPGRADE das Gerät nicht, der [M-Flasher-Weg](#rückweg-zu-v15-mit-m-flasher).
+
 ## Für künftige Firmware-Wechsel
 
 1. **Chip prüfen:** Das Gerät hat vermutlich den neuen Flash-Chip (in M-Flasher unter Device info bestätigen). Nur Firmware nehmen, die ihn unterstützt; die Liste steht auf der [Rettungsseite](https://thefirmwarehub.com/tools/rescue/#chip).
