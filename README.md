@@ -29,6 +29,17 @@ Zurück zur Original-Firmware gibt es zwei Wege:
 
 Danach die gesicherten Sounds und Einstellungen wieder einspielen.
 
+### Installer meldet „takes no updates“
+
+Meldung des Melodee-Installers: *„The firmware on your FM-1 takes no updates. Hold OCT− while switching it on, press Back to official V15, then install again.“* Dabei bricht er ab, bevor er etwas schreibt (*„stopped after 0 requests: nothing was written“*). Das Gerät ist in diesem Fall unverändert.
+
+Ablauf laut Installer:
+
+1. FM-1 ausschalten.
+2. **OCT−** gedrückt halten und das Gerät einschalten.
+3. Im Installer **„Back to official V15“** wählen. Das ist selbst ein Flashvorgang, es gelten die [Risiken](#risiken).
+4. Danach die Installation von Melodee erneut starten.
+
 ## Firmware-Quellen
 
 | Quelle | Art | Hinweis |
@@ -48,7 +59,7 @@ Danach die gesicherten Sounds und Einstellungen wieder einspielen.
 
 | Datum | Von | Nach | Werkzeug | Ergebnis |
 |---|---|---|---|---|
-| | | | | |
+| 2026-11-18 | Original (Version unbekannt) | Melodee | Melodee-Installer | Abbruch ohne Schreibvorgang: „takes no updates“, Weg über V15 nötig |
 
 ## Offene Punkte
 
