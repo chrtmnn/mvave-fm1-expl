@@ -13,7 +13,7 @@ Stand: 2026-11-18. Startpunkt aus einer Websuche, noch nicht am eigenen Gerät g
 | Chip | JieLi AC791N / WL82 (laut Reverse-Engineering-Projekt, siehe [Risiken](#risiken)) |
 | Flash-Chip | vermutlich neu (UC25HQ80, `0xB36014`), siehe [Ursache](#ursache-neuer-flash-chip); in M-Flasher unter Device info prüfen |
 | Original-Firmware | V15 (aktuellster offizieller Stand, auf den der Melodee-Installer zurückführt) |
-| Installierte Firmware | Blop (Stand 2026-11-18), Version noch eintragen |
+| Installierte Firmware | Original V15 (seit 2026-11-18) |
 
 ## Backup
 
@@ -88,9 +88,18 @@ Reagiert die Firmware nicht auf DOWNLOAD MODE, nennt die Rettungsseite als letzt
 |---|---|---|---|---|
 | 2026-11-18 | Blop (bereits installiert) | Blop | Blop-Installer | Abbruch ohne Schreibvorgang: „takes no updates“ |
 | 2026-11-18 | Blop | – | M-UPGRADE v3.11.0614 | Gerät nicht erkannt (Kennung `1209:0001`, `FM-1_94010100`) |
+| 2026-11-18 | Blop | V15 (`FM-1_015.fwsc`) | M-Flasher | Erfolgreich, Flash-Backup in `Dokumente\M-Flasher\backups` |
+
+## Für künftige Firmware-Wechsel
+
+1. **Chip prüfen:** Das Gerät hat vermutlich den neuen Flash-Chip (in M-Flasher unter Device info bestätigen). Nur Firmware nehmen, die ihn unterstützt; die Liste steht auf der [Rettungsseite](https://thefirmwarehub.com/tools/rescue/#chip).
+2. **Vorher sichern:** Mit M-Flasher ein Flash-Backup machen und es aufheben.
+3. **Akku voll, USB direkt**, nichts anderes mit MIDI offen (M-UPGRADE, DAW, Browser-Tabs).
+4. **Nicht wiederholt installieren**, wenn etwas scheitert. Erst Ursache klären.
+5. **Diese Dateien aufheben:** `FM-1_015.fwsc` und M-Flasher.
+6. **Ins Protokoll eintragen.**
 
 ## Offene Punkte
 
-- Installierte Firmware-Version am Gerät ablesen und oben eintragen.
 - Klären, ob die offizielle Workbench ein Auslesen oder eine Rettung nach abgebrochenem Flashen ermöglicht.
-- Ablageort für Backups festlegen.
+- Ablageort für Backups festlegen (M-Flasher-Backups liegen sonst nur unter `Dokumente\M-Flasher\backups`).
