@@ -57,7 +57,7 @@ Vor jeder Community-Firmware auf diesem Gerät prüfen, ob sie den neuen Chip un
 
 [M-Flasher](https://github.com/jvitkauskas/m-flasher) ([Anleitung](https://github.com/jvitkauskas/m-flasher/blob/main/docs/usage.md)) nutzt den Download-Modus im ROM des Chips („WL82 UBOOT1.00“), den keine Firmware überschreiben kann, und kann mit dem neuen Chip umgehen.
 
-1. FM-1 voll laden. Offizielle V15-`.fwsc` von der M-Vave-Seite und M-Flasher (Windows-Zip, nicht signiert) herunterladen. M-UPGRADE, DAW und Browser-Tabs mit MIDI schließen. FM-1 direkt per USB-Datenkabel anschließen, kein Hub.
+1. FM-1 voll laden. Offizielle V15-Datei [`FM-1_015.fwsc`](https://github.com/m-vave/fm1_open/blob/HEAD/sdk/firmware/FM-1_015.fwsc) aus M-Vaves Repo `m-vave/fm1_open` (m-vave.com bietet nur noch V16 an) und M-Flasher (Windows-Zip, nicht signiert) herunterladen. M-UPGRADE, DAW und Browser-Tabs mit MIDI schließen. FM-1 direkt per USB-Datenkabel anschließen, kein Hub.
 2. In M-Flasher **DOWNLOAD MODE**: Das Display friert ein, es wird noch nichts geschrieben. Aus- und Einschalten bringt den alten Zustand zurück. Nicht jede Firmware reagiert darauf.
 3. M-Flasher liest und sichert den ganzen Flash-Speicher (`Dokumente\M-Flasher\backups`).
 4. Angebot „m-bootloader installieren“ ablehnen, damit der Werks-Bootloader bleibt.
@@ -70,7 +70,8 @@ Reagiert die Firmware nicht auf DOWNLOAD MODE, nennt die Rettungsseite als letzt
 
 | Quelle | Art | Hinweis |
 |---|---|---|
-| M-Vave, offizieller Updater | Original | Weg zurück zum Werkszustand |
+| M-Vave, offizieller Updater (M-UPGRADE) | Original | [m-vave.com/download](https://www.m-vave.com/download), dort nur V16 (seit 20.10.2026) |
+| [m-vave/fm1_open](https://github.com/m-vave/fm1_open) | Original V15 | `sdk/firmware/FM-1_015.fwsc`, Apache-2.0, auch Quelle für „Back to official V15“ im Hub |
 | [Melodee](https://github.com/keremimo/melodee/wiki) | Community-Firmware | Installer mit Backup und Rückweg zu V15 |
 | The Firmware Hub | Sammlung alternativer Firmware | Herkunft je Datei prüfen; installiert: [Blop](https://thefirmwarehub.com/firmware/blop/) |
 | [M-Vave Workbench und SDK](https://synthtopia.com/content/2026/10/20/m-vave-officially-opens-fm-1-firmware-to-developers-with-new-workbench-sdk) | Offizielle Entwicklerwerkzeuge (seit Oktober 2026) | Grundlage für eigene Firmware |
